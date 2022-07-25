@@ -1,0 +1,46 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm2.aspx.cs" Inherits="WebApplication2.WebForm2" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        function runAjax() {
+            var inputVal = document.getElementById("Drop").value;
+            if (inputVal == "") return;
+            $.ajax({
+                url: 'WebForm1.aspx/DisplayData',
+                type: 'post',
+                data: JSON.stringify({ "Student": selected }),
+                contentType: 'application/json',
+                async: false,
+                success: function (data) {
+                    var name = document.getElementById("name");
+            })
+        }
+    </script>
+</head>
+<body>
+
+   <form runat="server" id="myForm">
+       <div>
+           <h2>Select student name</h2>
+    <asp:DropDownList runat="server" ID="Drop"  Width="200px" onChange="runAjax()"></asp:DropDownList><br />
+           <br />
+    <asp:Label runat="server">Name:</asp:Label>
+    <asp:Label runat="server" ID="name"></asp:Label><br />
+
+           </div>
+
+
+
+    </form>
+ 
+       <br />  
+        <%--<asp:Button runat="server" ID="Button1" OnClientClick="javascript: return studentList();"  Text="Click" OnClick ="btnSubmit_Click1"/>--%> 
+    
+
+</body>
+</html>
